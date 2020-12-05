@@ -30,15 +30,32 @@ class LoginController: UIViewController {
         
     }
     
-    @IBAction func loginButtonPressed(_ sender: Any) {
-        let login = loginInput.text!
-        let password = passwordInput.text!
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         
-        if login == "admin" && password == "123456" {
-            print("успешная авторизация")
-        } else {
-            print("неуспешная авторизация")
+        let checkResult = checkUserData()
+        
+        if !checkResult {
+            showLoginError()
         }
+        return checkResult
+    }
+    
+    func checkUserData() -> Bool {
+        guard let userLogin = loginInput.text, let userPassword = passwordInput.text else {return false}
+        
+        if userLogin == "1" && userPassword == "1" {
+            return true
+        } else {
+            return false
+        }
+        
+    }
+    
+    func showLoginError() {
+        let alert = UIAlertController(title:"Error", message: "Login Failed", preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
     }
     
     @IBOutlet var loginInput: UITextField!
