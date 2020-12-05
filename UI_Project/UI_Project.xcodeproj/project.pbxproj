@@ -12,7 +12,7 @@
 		99FDD4B12578394900EA39AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99FDD4AF2578394900EA39AB /* Main.storyboard */; };
 		99FDD4B32578394D00EA39AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99FDD4B22578394D00EA39AB /* Assets.xcassets */; };
 		99FDD4B62578394D00EA39AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99FDD4B42578394D00EA39AB /* LaunchScreen.storyboard */; };
-		99FDD4C025783AB300EA39AB /* Login_Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99FDD4BF25783AB300EA39AB /* Login_Controller.swift */; };
+		99FDD4C025783AB300EA39AB /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99FDD4BF25783AB300EA39AB /* LoginController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,7 +23,7 @@
 		99FDD4B22578394D00EA39AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		99FDD4B52578394D00EA39AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		99FDD4B72578394D00EA39AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		99FDD4BF25783AB300EA39AB /* Login_Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login_Controller.swift; sourceTree = "<group>"; };
+		99FDD4BF25783AB300EA39AB /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,7 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				99FDD4B42578394D00EA39AB /* LaunchScreen.storyboard */,
-				99FDD4BF25783AB300EA39AB /* Login_Controller.swift */,
+				99FDD4BF25783AB300EA39AB /* LoginController.swift */,
 			);
 			path = LoginScreen;
 			sourceTree = "<group>";
@@ -145,7 +145,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				99FDD4C025783AB300EA39AB /* Login_Controller.swift in Sources */,
+				99FDD4C025783AB300EA39AB /* LoginController.swift in Sources */,
 				99FDD4AA2578394900EA39AB /* AppDelegate.swift in Sources */,
 				99FDD4AC2578394900EA39AB /* SceneDelegate.swift in Sources */,
 			);

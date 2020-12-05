@@ -1,5 +1,5 @@
 //
-//  Login_Controller.swift
+//  LoginController.swift
 //  UI_Project
 //
 //  Created by Ilya Dunaev on 03.12.2020.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class Login_Controller: UIViewController {
+class LoginController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
