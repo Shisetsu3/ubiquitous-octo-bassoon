@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		998166EB25840B59001DA1E3 /* FriendsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998166EA25840B59001DA1E3 /* FriendsTableController.swift */; };
+		998166F02584B3A7001DA1E3 /* TableViewCellOnline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998166EF2584B3A7001DA1E3 /* TableViewCellOnline.swift */; };
+		998166F72584B5C8001DA1E3 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998166F62584B5C8001DA1E3 /* CollectionViewController.swift */; };
+		998166FB2584B620001DA1E3 /* CollectionViewCellPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998166FA2584B620001DA1E3 /* CollectionViewCellPhoto.swift */; };
+		998167182584CC76001DA1E3 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998166FE2584CC76001DA1E3 /* UserInfo.swift */; };
+		998167302584CC76001DA1E3 /* GroupInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998167172584CC76001DA1E3 /* GroupInfo.swift */; };
+		998167382584CD25001DA1E3 /* TableViewCellRecomendedGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998167342584CD25001DA1E3 /* TableViewCellRecomendedGroups.swift */; };
+		998167392584CD25001DA1E3 /* TableViewControllerGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998167352584CD25001DA1E3 /* TableViewControllerGroups.swift */; };
+		9981673A2584CD25001DA1E3 /* TableViewCellGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998167362584CD25001DA1E3 /* TableViewCellGroups.swift */; };
+		9981673B2584CD25001DA1E3 /* TableViewControllerRecomendGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998167372584CD25001DA1E3 /* TableViewControllerRecomendGroups.swift */; };
+		9981674325852279001DA1E3 /* LikeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9981674225852279001DA1E3 /* LikeButton.swift */; };
 		99FDD4AA2578394900EA39AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99FDD4A92578394900EA39AB /* AppDelegate.swift */; };
 		99FDD4AC2578394900EA39AB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99FDD4AB2578394900EA39AB /* SceneDelegate.swift */; };
 		99FDD4B12578394900EA39AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99FDD4AF2578394900EA39AB /* Main.storyboard */; };
@@ -16,6 +27,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		998166EA25840B59001DA1E3 /* FriendsTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableController.swift; sourceTree = "<group>"; };
+		998166EF2584B3A7001DA1E3 /* TableViewCellOnline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellOnline.swift; sourceTree = "<group>"; };
+		998166F62584B5C8001DA1E3 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
+		998166FA2584B620001DA1E3 /* CollectionViewCellPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCellPhoto.swift; sourceTree = "<group>"; };
+		998166FE2584CC76001DA1E3 /* UserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		998167172584CC76001DA1E3 /* GroupInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupInfo.swift; sourceTree = "<group>"; };
+		998167342584CD25001DA1E3 /* TableViewCellRecomendedGroups.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCellRecomendedGroups.swift; sourceTree = "<group>"; };
+		998167352584CD25001DA1E3 /* TableViewControllerGroups.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewControllerGroups.swift; sourceTree = "<group>"; };
+		998167362584CD25001DA1E3 /* TableViewCellGroups.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCellGroups.swift; sourceTree = "<group>"; };
+		998167372584CD25001DA1E3 /* TableViewControllerRecomendGroups.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewControllerRecomendGroups.swift; sourceTree = "<group>"; };
+		9981674225852279001DA1E3 /* LikeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeButton.swift; sourceTree = "<group>"; };
 		99FDD4A62578394900EA39AB /* UI_Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UI_Project.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99FDD4A92578394900EA39AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		99FDD4AB2578394900EA39AB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,6 +59,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		998166E6258409D7001DA1E3 /* Friends */ = {
+			isa = PBXGroup;
+			children = (
+				998166F52584B59C001DA1E3 /* Photos */,
+				998166EA25840B59001DA1E3 /* FriendsTableController.swift */,
+				998166EF2584B3A7001DA1E3 /* TableViewCellOnline.swift */,
+			);
+			path = Friends;
+			sourceTree = "<group>";
+		};
+		998166F52584B59C001DA1E3 /* Photos */ = {
+			isa = PBXGroup;
+			children = (
+				998166F62584B5C8001DA1E3 /* CollectionViewController.swift */,
+				998166FA2584B620001DA1E3 /* CollectionViewCellPhoto.swift */,
+				9981674225852279001DA1E3 /* LikeButton.swift */,
+			);
+			path = Photos;
+			sourceTree = "<group>";
+		};
+		998166FD2584CC76001DA1E3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				998166FE2584CC76001DA1E3 /* UserInfo.swift */,
+				998167172584CC76001DA1E3 /* GroupInfo.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		998167332584CD25001DA1E3 /* Groups */ = {
+			isa = PBXGroup;
+			children = (
+				998167342584CD25001DA1E3 /* TableViewCellRecomendedGroups.swift */,
+				998167352584CD25001DA1E3 /* TableViewControllerGroups.swift */,
+				998167362584CD25001DA1E3 /* TableViewCellGroups.swift */,
+				998167372584CD25001DA1E3 /* TableViewControllerRecomendGroups.swift */,
+			);
+			path = Groups;
+			sourceTree = "<group>";
+		};
 		99FDD49D2578394900EA39AB = {
 			isa = PBXGroup;
 			children = (
@@ -56,6 +118,9 @@
 		99FDD4A82578394900EA39AB /* UI_Project */ = {
 			isa = PBXGroup;
 			children = (
+				998167332584CD25001DA1E3 /* Groups */,
+				998166FD2584CC76001DA1E3 /* Model */,
+				998166E6258409D7001DA1E3 /* Friends */,
 				99FDD4C225783AC600EA39AB /* LoginScreen */,
 				99FDD4A92578394900EA39AB /* AppDelegate.swift */,
 				99FDD4AB2578394900EA39AB /* SceneDelegate.swift */,
@@ -145,9 +210,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				998166F02584B3A7001DA1E3 /* TableViewCellOnline.swift in Sources */,
+				998166FB2584B620001DA1E3 /* CollectionViewCellPhoto.swift in Sources */,
+				9981673A2584CD25001DA1E3 /* TableViewCellGroups.swift in Sources */,
+				998167382584CD25001DA1E3 /* TableViewCellRecomendedGroups.swift in Sources */,
 				99FDD4C025783AB300EA39AB /* LoginController.swift in Sources */,
+				998167302584CC76001DA1E3 /* GroupInfo.swift in Sources */,
 				99FDD4AA2578394900EA39AB /* AppDelegate.swift in Sources */,
+				998167392584CD25001DA1E3 /* TableViewControllerGroups.swift in Sources */,
+				9981673B2584CD25001DA1E3 /* TableViewControllerRecomendGroups.swift in Sources */,
+				998166F72584B5C8001DA1E3 /* CollectionViewController.swift in Sources */,
 				99FDD4AC2578394900EA39AB /* SceneDelegate.swift in Sources */,
+				998167182584CC76001DA1E3 /* UserInfo.swift in Sources */,
+				9981674325852279001DA1E3 /* LikeButton.swift in Sources */,
+				998166EB25840B59001DA1E3 /* FriendsTableController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
