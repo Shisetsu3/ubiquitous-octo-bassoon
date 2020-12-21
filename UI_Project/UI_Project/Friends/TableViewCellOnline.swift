@@ -11,6 +11,7 @@ class TableViewCellOnline: UITableViewCell {
     
     @IBOutlet weak var friendLabel: UILabel!
     @IBOutlet weak var friendPhoto: UIImageView!
+    @IBOutlet weak var surnameLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

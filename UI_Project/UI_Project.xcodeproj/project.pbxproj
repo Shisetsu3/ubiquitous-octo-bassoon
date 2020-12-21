@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		99102D1E258FF39D00F620BD /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99102D1D258FF39D00F620BD /* ProfileController.swift */; };
 		998166EB25840B59001DA1E3 /* FriendsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998166EA25840B59001DA1E3 /* FriendsTableController.swift */; };
 		998166F02584B3A7001DA1E3 /* TableViewCellOnline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998166EF2584B3A7001DA1E3 /* TableViewCellOnline.swift */; };
 		998166F72584B5C8001DA1E3 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998166F62584B5C8001DA1E3 /* CollectionViewController.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		99102D1D258FF39D00F620BD /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		998166EA25840B59001DA1E3 /* FriendsTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableController.swift; sourceTree = "<group>"; };
 		998166EF2584B3A7001DA1E3 /* TableViewCellOnline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellOnline.swift; sourceTree = "<group>"; };
 		998166F62584B5C8001DA1E3 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 				998166F52584B59C001DA1E3 /* Photos */,
 				998166EA25840B59001DA1E3 /* FriendsTableController.swift */,
 				998166EF2584B3A7001DA1E3 /* TableViewCellOnline.swift */,
+				99102D1D258FF39D00F620BD /* ProfileController.swift */,
 			);
 			path = Friends;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 				9981673A2584CD25001DA1E3 /* TableViewCellGroups.swift in Sources */,
 				998167382584CD25001DA1E3 /* TableViewCellRecomendedGroups.swift in Sources */,
 				99FDD4C025783AB300EA39AB /* LoginController.swift in Sources */,
+				99102D1E258FF39D00F620BD /* ProfileController.swift in Sources */,
 				998167302584CC76001DA1E3 /* GroupInfo.swift in Sources */,
 				99FDD4AA2578394900EA39AB /* AppDelegate.swift in Sources */,
 				998167392584CD25001DA1E3 /* TableViewControllerGroups.swift in Sources */,

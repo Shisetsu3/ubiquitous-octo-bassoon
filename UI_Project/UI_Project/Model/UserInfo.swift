@@ -1,20 +1,44 @@
 //
 //  UserInfo.swift
-//  Lesson1_Login
+//  UI_Project
 //
-//  Created by Илья Дунаев on 01.11.2020.
+//  Created by Shisetsu on 11.12.2020.
 //
 
 import Foundation
 import UIKit
 
-class UserInfo {
-    var userID = Int()
-    var onlineStatus = Bool()
-    var userAvatar = UIImage()
+struct UserInfo {
+    var userID = String()
+    var onlineStatus = String()
+    var userAvatar = String()
     var name = String()
+    var surname = String()
     var age = Int()
-    var birthDate = Int()
+    var birthDate = String()
     var city = String()
-    var friends = [String]()
+    var bio = String()
 }
+
+//class UserInfo {
+//    var userID : String
+//    var onlineStatus : String
+//    var userAvatar : String
+//    var name : String
+//    var surname : String
+//    var age : Int
+//    var birthDate : String
+//    var city : String
+//    var bio : String
+//    init(userID : String, onlineStatus : String, userAvatar : String, name : String, surname : String, age : Int, birthDate : String, city : String, bio : String) {
+//        self.userID = userID
+//        self.onlineStatus = onlineStatus
+//        self.userAvatar = userAvatar
+//        self.name = name
+//        self.surname = surname
+//        self.age = age
+//        self.birthDate = birthDate
+//        self.city = city
+//        self.bio = bio
+//    }
+//}
