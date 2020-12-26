@@ -21,6 +21,7 @@ class TableViewCellRecomendedGroups: UITableViewCell {
     }
     @IBOutlet weak var recomendedGroupsLabel: UILabel!
     @IBOutlet weak var recomendedGroupsPhoto: UIImageView!
+    @IBOutlet weak var groupDescription: UILabel!
     
     
 }

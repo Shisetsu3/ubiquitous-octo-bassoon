@@ -1,13 +1,13 @@
 //
-//  TableViewCellOnline.swift
+//  TableViewCell.swift
 //  UI_Project
 //
-//  Created by  Shisetsu on 12.12.2020.
+//  Created by Shisetsu on 12.12.2020.
 //
 
 import UIKit
 
-class TableViewCellOnline: UITableViewCell {
+class TableViewCell: UITableViewCell {
     
     @IBOutlet weak var friendLabel: UILabel!
     @IBOutlet weak var friendPhoto: UIImageView!
