@@ -13,6 +13,7 @@ class LoginController: UIViewController {
         super.viewDidLoad()
         let hideKeyboardGuesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         scrollView?.addGestureRecognizer(hideKeyboardGuesture)
+        // Create Animation object
     }
     
     override func viewWillAppear(_ animated: Bool) {
