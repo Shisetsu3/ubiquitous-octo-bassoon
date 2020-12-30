@@ -7,11 +7,8 @@
 
 import UIKit
 
-@IBDesignable class FriendsTableController: UITableViewController, UISearchBarDelegate {
+class FriendsTableController: UITableViewController, UISearchBarDelegate {
     
-    @IBInspectable var opacity:Float = 0.5
-    @IBInspectable var radius:CGFloat = 0
-    @IBInspectable var color:UIColor = .gray
     @IBOutlet weak var searchBar: UISearchBar!
     
     var friendsData = [
@@ -32,6 +29,7 @@ import UIKit
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.rowHeight = 60
         searchBar.delegate = self
         searchBar.placeholder = "Search"
         
@@ -110,8 +108,36 @@ import UIKit
         return keys[section]
     }
     
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.layer.transform = CATransform3DMakeScale(0.1,0.1,1)
+        UIView.animate(
+            withDuration: 0.25,
+            animations: {
+                cell.layer.transform = CATransform3DMakeScale(1,1,1)
+            })
+    }
+
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    override func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+        guard let viewAvatar = tableView.cellForRow(at: indexPath) as? TableViewCell else {return}
+        
+        let spring = CASpringAnimation(keyPath: "transform.scale")
+        spring.duration = 0.5
+        spring.damping = 0.1
+        spring.initialVelocity = 0.1
+        spring.fromValue = 1
+        spring.toValue = 0.9
+        
+        let animation = CAAnimationGroup()
+        animation.duration = 1
+        animation.animations = [spring]
+        
+        viewAvatar.headerView.layer.add(animation, forKey: "spring")
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -124,54 +150,27 @@ import UIKit
             let searchedFriends = filteredData[indexPath.row]
             cell.friendLabel.text = searchedFriends.fio
             imageName = UIImage(named: searchedFriends.userAvatar)!
+            cell.friendPhoto.image = UIImage(named: searchedFriends.userAvatar)
         } else {
             let friendsClass = sections[key]![indexPath.row]
             cell.friendLabel.text = friendsClass.fio
             imageName = UIImage(named: friendsClass.userAvatar)!
+            cell.friendPhoto.image = UIImage(named: friendsClass.userAvatar)
         }
         
+        cell.friendPhoto.clipsToBounds = true
+        cell.friendPhoto.layer.cornerRadius = cell.friendPhoto.frame.height / 2
+        cell.headerView.addSubview(cell.friendPhoto)
         
-        let avatarView: UIView = UIView(frame: CGRect(x: 3, y: 2, width: 42, height: 42))
-        let layer = CALayer()
-        let image = imageName.cgImage
-        layer.frame = avatarView.bounds
-        layer.contents = image
-        avatarView.layer.addSublayer(layer)
-        avatarView.layer.cornerRadius = avatarView.frame.width / 2
-        
-        let circlePath = UIBezierPath(arcCenter: CGPoint(x: 21, y: 21), radius: CGFloat(20), startAngle: CGFloat(0), endAngle: CGFloat(Double.pi * 2), clockwise: true)
-        let circleLayer = CAShapeLayer()
-        circleLayer.path = circlePath.cgPath
-        circleLayer.fillColor = UIColor.gray.cgColor
-        circleLayer.strokeColor = UIColor.gray.cgColor
-        circleLayer.lineWidth = 1.0
-        
-        let roundView = UIView(frame: CGRect(x: 4, y: 3, width: 40, height: 40))
-        let circle = CALayer()
-        circle.frame = roundView.bounds
-        roundView.layer.addSublayer(circleLayer)
-        roundView.backgroundColor = UIColor.gray
-        roundView.alpha = 1
-        roundView.layer.cornerRadius = roundView.frame.width / 2
-        roundView.layer.shadowColor = color.cgColor
-        roundView.layer.shadowOpacity = opacity
-        roundView.layer.shadowRadius = radius
-        roundView.layer.shadowOffset = CGSize.zero
-        
-        avatarView.layer.mask = circleLayer
-        
-        cell.contentView.addSubview(roundView)
-        cell.contentView.addSubview(avatarView)
+        cell.addSubview(cell.headerView)
         
         return cell
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         let vc = segue.destination as! ProfileController
         if let indexPath = self.tableView.indexPathForSelectedRow {
             let key = keys[indexPath.section]
-            
             if searchBarStatus {
                 let friendsClass = filteredData[indexPath.row]
                 vc.userPhoto = UIImage(named: friendsClass.userAvatar)
@@ -193,9 +192,6 @@ import UIKit
                 vc.userStatus = friendsClass.onlineStatus
                 vc.userBio = friendsClass.bio
             }
-            
-            
-
         }
     }
 }

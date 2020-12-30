@@ -46,6 +46,22 @@ import UIKit
         self.setImage(selectedImg, for: .normal)
         self.setTitle("\(likesCount)", for: .normal)
         self.setTitleColor(textColorSelected, for: .normal)
+        
+        let beat = CASpringAnimation(keyPath: "transform.scale")
+        beat.duration = 0.6
+        beat.fromValue = 1.0
+        beat.toValue = 1.12
+        beat.autoreverses = true
+        beat.repeatCount = 1
+        beat.initialVelocity = 0.5
+        beat.damping = 0.8
+
+        let animation = CAAnimationGroup()
+        animation.duration = 2.7
+        animation.repeatCount = 1
+        animation.animations = [beat]
+
+        layer.add(animation, forKey: "beat")
     }
     
     func dislike() {
