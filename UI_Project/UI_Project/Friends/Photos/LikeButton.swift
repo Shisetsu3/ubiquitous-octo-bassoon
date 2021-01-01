@@ -9,7 +9,7 @@ import UIKit
 
 @IBDesignable class LikeButton: UIButton {
     
-    @IBInspectable var likesCount:Int = 1
+    @IBInspectable var likesCount:Int = 5
     @IBInspectable var selectedImg = UIImage(named: "heart_full")
     @IBInspectable var deselectedImg = UIImage(named: "heart_empty")
     
