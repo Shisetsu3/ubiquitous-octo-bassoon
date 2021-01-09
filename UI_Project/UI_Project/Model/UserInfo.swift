@@ -19,4 +19,5 @@ struct UserInfo {
     var birthDate = String()
     var city = String()
     var bio = String()
+    var photoGallery = [String]()
 }

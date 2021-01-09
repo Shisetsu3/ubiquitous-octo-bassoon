@@ -17,6 +17,7 @@ class ProfileController: UIViewController {
     var userAge: String!
     var userStatus: String!
     var userBio: String!
+    //var userGalery:[UIImage]!
     
     
     @IBOutlet weak var avatar: UIImageView!

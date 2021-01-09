@@ -47,6 +47,12 @@ class TableViewControllerGroups: UITableViewController {
         }
     }
     
+    @IBAction func showSerachScreen() {
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SearchScreen") as! TableViewControllerRecomendGroups
+        self.navigationController!.pushViewController(nextViewController, animated: true)
+    }
+    
     @IBAction func addGroup(segue: UIStoryboardSegue) {
         if segue.identifier == "addGroup" {
             guard let RecomendedGroups = segue.source as? TableViewControllerRecomendGroups else { return }

@@ -12,6 +12,8 @@ class FullScreenPhoto: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     var userPhoto: UIImage!
     var counts = 1
+    var offset:CGFloat = 0
+    var userGalery = PhotoGallery().images
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +33,7 @@ class FullScreenPhoto: UIViewController {
 
 extension FullScreenPhoto: UICollectionViewDataSource, UIScrollViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return userGalery.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -59,12 +61,21 @@ extension FullScreenPhoto: UICollectionViewDataSource, UIScrollViewDelegate, UIC
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
+//        let photoFrame = collectionView.frame
+//
+//        let widthFrame = photoFrame.width / CGFloat(counts)
+//        let heightFrame = widthFrame
+//
+//        return CGSize(width: widthFrame, height: heightFrame)
+        
         let photoFrame = collectionView.frame
         
         let widthFrame = photoFrame.width / CGFloat(counts)
         let heightFrame = widthFrame
         
-        return CGSize(width: widthFrame, height: heightFrame)
+        let spacing = CGFloat((counts + 1)) * offset / CGFloat(counts)
+        
+        return CGSize(width: widthFrame - spacing, height: heightFrame - (offset*2))
     }
 }
 

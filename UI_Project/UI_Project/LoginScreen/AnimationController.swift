@@ -21,9 +21,6 @@ class AnimationController: UIViewController {
         
         animationView!.contentMode = .scaleAspectFit
         
-        
-        //animationView!.loopMode = .loop
-        
         animationView!.animationSpeed = 0.5
         
         view.addSubview(animationView!)
