@@ -15,7 +15,6 @@ class CustomNavigationController: UINavigationController, UINavigationController
         delegate = self
     }
     
-    
     func navigationController(_ navigationController: UINavigationController,
                               animationControllerFor operation: UINavigationController.Operation,
                               from fromVC: UIViewController,

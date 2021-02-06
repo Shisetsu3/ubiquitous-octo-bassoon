@@ -17,6 +17,7 @@
 		9949D1FA259F6C2E00EF5DD4 /* FullScreenPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9949D1F8259F6C2E00EF5DD4 /* FullScreenPhotoCell.swift */; };
 		9949D1FB259F6C2E00EF5DD4 /* FullScreenPhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9949D1F9259F6C2E00EF5DD4 /* FullScreenPhotoCell.xib */; };
 		9949D20A25A20C8700EF5DD4 /* PhotoGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9949D20925A20C8600EF5DD4 /* PhotoGallery.swift */; };
+		99510E3425C88707009F1163 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99510E3325C88707009F1163 /* WebViewController.swift */; };
 		995BFDDC259CE5CA0099FF45 /* DotController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995BFDDB259CE5CA0099FF45 /* DotController.swift */; };
 		995E490C259883BB00C2864C /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 995E490B259883BB00C2864C /* Lottie */; };
 		995E491825988ED200C2864C /* AnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995E491725988ED200C2864C /* AnimationController.swift */; };
@@ -33,6 +34,7 @@
 		9981674325852279001DA1E3 /* LikeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9981674225852279001DA1E3 /* LikeButton.swift */; };
 		99975AEC25A32BA000E11042 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99975AEB25A32B9F00E11042 /* CustomNavigationController.swift */; };
 		99B547F42596A94400813960 /* NewsInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B547F32596A94400813960 /* NewsInfo.swift */; };
+		99CF387E25C9C92500885FA5 /* DataRequestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99CF387D25C9C92500885FA5 /* DataRequestController.swift */; };
 		99FDD4AA2578394900EA39AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99FDD4A92578394900EA39AB /* AppDelegate.swift */; };
 		99FDD4AC2578394900EA39AB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99FDD4AB2578394900EA39AB /* SceneDelegate.swift */; };
 		99FDD4B12578394900EA39AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99FDD4AF2578394900EA39AB /* Main.storyboard */; };
@@ -52,6 +54,7 @@
 		9949D1F8259F6C2E00EF5DD4 /* FullScreenPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenPhotoCell.swift; sourceTree = "<group>"; };
 		9949D1F9259F6C2E00EF5DD4 /* FullScreenPhotoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FullScreenPhotoCell.xib; sourceTree = "<group>"; };
 		9949D20925A20C8600EF5DD4 /* PhotoGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGallery.swift; sourceTree = "<group>"; };
+		99510E3325C88707009F1163 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		995BFDDB259CE5CA0099FF45 /* DotController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotController.swift; sourceTree = "<group>"; };
 		995E491725988ED200C2864C /* AnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationController.swift; sourceTree = "<group>"; };
 		995E491A2598948900C2864C /* Christmas.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Christmas.json; sourceTree = "<group>"; };
@@ -67,6 +70,7 @@
 		9981674225852279001DA1E3 /* LikeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeButton.swift; sourceTree = "<group>"; };
 		99975AEB25A32B9F00E11042 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		99B547F32596A94400813960 /* NewsInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsInfo.swift; sourceTree = "<group>"; };
+		99CF387D25C9C92500885FA5 /* DataRequestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRequestController.swift; sourceTree = "<group>"; };
 		99FDD4A62578394900EA39AB /* UI_Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UI_Project.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99FDD4A92578394900EA39AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		99FDD4AB2578394900EA39AB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -104,6 +108,15 @@
 				9919951725C846D700E1E729 /* Session.swift */,
 			);
 			path = Session;
+			sourceTree = "<group>";
+		};
+		99510E3225C886D2009F1163 /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				99510E3325C88707009F1163 /* WebViewController.swift */,
+				99CF387D25C9C92500885FA5 /* DataRequestController.swift */,
+			);
+			path = WebView;
 			sourceTree = "<group>";
 		};
 		998166E6258409D7001DA1E3 /* Friends */ = {
@@ -180,6 +193,7 @@
 		99FDD4A82578394900EA39AB /* UI_Project */ = {
 			isa = PBXGroup;
 			children = (
+				99510E3225C886D2009F1163 /* WebView */,
 				9919951625C846AD00E1E729 /* Session */,
 				99975ABA25A2171E00E11042 /* Navi */,
 				998167332584CD25001DA1E3 /* Groups */,
@@ -287,6 +301,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99CF387E25C9C92500885FA5 /* DataRequestController.swift in Sources */,
 				9949D1F0259F5A9600EF5DD4 /* PhotoFullViewCell.swift in Sources */,
 				998166F02584B3A7001DA1E3 /* TableViewCell.swift in Sources */,
 				99102D2B2592077E00F620BD /* NewsViewCell.swift in Sources */,
@@ -298,6 +313,7 @@
 				998167302584CC76001DA1E3 /* GroupInfo.swift in Sources */,
 				99FDD4AA2578394900EA39AB /* AppDelegate.swift in Sources */,
 				9919951825C846D800E1E729 /* Session.swift in Sources */,
+				99510E3425C88707009F1163 /* WebViewController.swift in Sources */,
 				998167392584CD25001DA1E3 /* TableViewControllerGroups.swift in Sources */,
 				9949D1F6259F66BD00EF5DD4 /* FullScreenPhoto.swift in Sources */,
 				99B547F42596A94400813960 /* NewsInfo.swift in Sources */,
