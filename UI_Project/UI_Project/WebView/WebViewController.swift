@@ -23,7 +23,7 @@ class WebViewController: UIViewController {
                 urlComponents.host = "oauth.vk.com"
                 urlComponents.path = "/authorize"
                 urlComponents.queryItems = [
-                    URLQueryItem(name: "client_id", value: "7747969"),
+                    URLQueryItem(name: "client_id", value: "7767306"),
                     URLQueryItem(name: "display", value: "mobile"),
                     URLQueryItem(name: "redirect_uri", value: "https://oauth.vk.com/blank.html"),
                     URLQueryItem(name: "scope", value: "friends,photos,groups"),
@@ -70,7 +70,7 @@ extension WebViewController: WKNavigationDelegate {
         
         
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "DataRequestVC") as! DataRequestController
+        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "LoginScreen") as! LoginController
         nextViewController.modalPresentationStyle = .fullScreen
         self.present(nextViewController, animated:true, completion:nil)
         

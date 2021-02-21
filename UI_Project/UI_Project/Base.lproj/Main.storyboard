@@ -644,6 +644,7 @@
                                     <constraint firstItem="Oe0-tw-17S" firstAttribute="leading" secondItem="Bzk-MJ-XAp" secondAttribute="trailing" constant="8" id="1Cn-ex-Ruw"/>
                                     <constraint firstItem="Ufx-pv-Y8C" firstAttribute="leading" secondItem="5Ds-r7-pdt" secondAttribute="leading" constant="8" id="5X9-zp-PqW"/>
                                     <constraint firstItem="MYb-6v-Q1J" firstAttribute="top" secondItem="Bzk-MJ-XAp" secondAttribute="bottom" constant="4" id="61J-vY-be1"/>
+                                    <constraint firstItem="8MW-gD-5Gu" firstAttribute="top" secondItem="G1Y-AX-bTU" secondAttribute="bottom" constant="2" id="7fB-jz-qe4"/>
                                     <constraint firstItem="COR-4S-xoD" firstAttribute="leading" secondItem="Bzk-MJ-XAp" secondAttribute="trailing" constant="8" symbolic="YES" id="8H4-Pz-bKJ"/>
                                     <constraint firstItem="Bzk-MJ-XAp" firstAttribute="top" secondItem="5Ds-r7-pdt" secondAttribute="top" constant="8" id="CEH-Ah-eTE"/>
                                     <constraint firstAttribute="trailing" secondItem="N7o-ZM-QU8" secondAttribute="trailing" constant="8" id="ER8-qk-94f"/>
@@ -678,7 +679,6 @@
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="MYb-6v-Q1J" secondAttribute="trailing" constant="20" symbolic="YES" id="w5w-eF-mh8"/>
                                     <constraint firstItem="G1Y-AX-bTU" firstAttribute="top" secondItem="Bz1-Yb-DCG" secondAttribute="bottom" constant="4" id="x4I-4P-HHw"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Bz1-Yb-DCG" secondAttribute="trailing" constant="4" id="z36-sk-ohG"/>
-                                    <constraint firstItem="8MW-gD-5Gu" firstAttribute="top" secondItem="Bqe-23-CQW" secondAttribute="bottom" constant="2" id="zhI-EX-jRz"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Oe0-tw-17S" secondAttribute="trailing" constant="4" id="zy8-Ra-TOe"/>
                                 </constraints>
                             </view>
@@ -686,7 +686,7 @@
                         <viewLayoutGuide key="safeArea" id="UMz-kB-Ct1"/>
                         <color key="backgroundColor" systemColor="systemGray2Color"/>
                         <constraints>
-                            <constraint firstItem="UMz-kB-Ct1" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="5Ds-r7-pdt" secondAttribute="trailing" constant="4" id="4ev-EE-riY"/>
+                            <constraint firstItem="UMz-kB-Ct1" firstAttribute="trailing" secondItem="5Ds-r7-pdt" secondAttribute="trailing" constant="4" id="4ev-EE-riY"/>
                             <constraint firstItem="5Ds-r7-pdt" firstAttribute="top" secondItem="UMz-kB-Ct1" secondAttribute="top" constant="4" id="Wc2-Qc-YOo"/>
                             <constraint firstItem="UMz-kB-Ct1" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="5Ds-r7-pdt" secondAttribute="bottom" constant="4" id="WzW-dq-Cmb"/>
                             <constraint firstItem="5Ds-r7-pdt" firstAttribute="leading" secondItem="UMz-kB-Ct1" secondAttribute="leading" constant="4" id="a63-M1-F94"/>
@@ -706,7 +706,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BX3-Jx-o0b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3286.9565217391305" y="-258.48214285714283"/>
+            <point key="canvasLocation" x="3285.9813084112147" y="-258.53131749460044"/>
         </scene>
         <!--Галерея-->
         <scene sceneID="9KU-fs-b6K">

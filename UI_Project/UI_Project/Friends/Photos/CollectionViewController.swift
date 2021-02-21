@@ -9,9 +9,11 @@ import UIKit
 
 class CollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
-    var userPhoto: UIImage!
+    var userPhoto = [Size]()
+    var avatar: UIImage!
+    var userID: String!
     //var userGalery: [UIImage]!
-    var photoGallery = PhotoGallery().images
+    //var photoGallery = PhotoGallery().images
     
     
     var counts = 3
@@ -32,13 +34,18 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photoGallery.count
+        return userPhoto.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoFullViewCell", for: indexPath) as! PhotoFullViewCell
+        let photos = userPhoto[indexPath.row]
+        let imageUrlString = photos.url
+        let imageUrl = URL(string: imageUrlString)!
+        let imageData = try! Data(contentsOf: imageUrl)
+        let imageName = UIImage(data: imageData)!
         
-        cell.photoView.image = userPhoto!
+        cell.photoView.image = imageName
         //cell.photoView.image = photoGallery[indexPath.item]
         
         return cell

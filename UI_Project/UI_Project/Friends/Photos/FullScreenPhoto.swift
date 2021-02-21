@@ -10,7 +10,7 @@ import UIKit
 class FullScreenPhoto: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
-    var userPhoto: UIImage!
+    var userPhoto = [Size]()
     var counts = 1
     var offset:CGFloat = 0
     var userGalery = PhotoGallery().images
@@ -39,7 +39,13 @@ extension FullScreenPhoto: UICollectionViewDataSource, UIScrollViewDelegate, UIC
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FullScreenPhotoCell", for: indexPath) as! FullScreenPhotoCell
         
-        cell.fullPhotoView.image = userPhoto!
+        
+        let photos = userPhoto[indexPath.row]
+        let imageUrlString = photos.url
+        let imageUrl = URL(string: imageUrlString)!
+        let imageData = try! Data(contentsOf: imageUrl)
+        let imageName = UIImage(data: imageData)!
+        cell.fullPhotoView.image = imageName
         
         return cell
     }
