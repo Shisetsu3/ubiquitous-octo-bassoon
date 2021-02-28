@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class ProfileController: UIViewController {
     
@@ -18,8 +19,7 @@ class ProfileController: UIViewController {
     var userAge: String!
     var userStatus: String!
     var userBio: String!
-    var userID = String()
-    //var userGalery:[UIImage]!
+    var userID = Int()
     
     
     @IBOutlet weak var avatar: UIImageView!
@@ -31,17 +31,17 @@ class ProfileController: UIViewController {
     @IBOutlet weak var status: UILabel!
     @IBOutlet weak var bio: UILabel!
     
-
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-        
         getPhoto()
-        
+        DispatchQueue.main.async() {
+            self.loadPhotoData()
+        }
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
-        
         avatar.isUserInteractionEnabled = true
         avatar.addGestureRecognizer(tapGestureRecognizer)
-        
         avatar.image = userPhoto
         name.text = userName
         surname.text = userSurname
@@ -59,23 +59,67 @@ class ProfileController: UIViewController {
     
     @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer){
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PhotoGallery") as! CollectionViewController
-        //vc.avatar = avatar.image
         vc.userID = userID
         vc.userPhoto = photoArray
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
+    func savePhotoData(_ photos: [Size]) {
+        do {
+            let realm = try Realm()
+            realm.beginWrite()
+            realm.add(photos, update: .modified)
+            try realm.commitWrite()
+            //            print("URL FOR BASE")
+            //            print(realm.configuration.fileURL!)
+        } catch {
+            print(error)
+        }
+    }
+    
+//    func createUserId(userId: Int) {
+//        do {
+//            let realm = try Realm()
+//            realm.beginWrite()
+//            realm.add(photos)
+//            try realm.commitWrite()
+//            //            print("URL FOR BASE")
+//            //            print(realm.configuration.fileURL!)
+//        } catch {
+//            print(error)
+//        }
+//    }
+    
+    func loadPhotoData() {
+        do {
+            let realm = try Realm()
+            let photo = realm.objects(Size.self)
+            self.photoArray = Array(photo)
+        } catch {
+            print(error)
+        }
+    }
+    
     func getPhoto() {
-        let url = URL(string:"https://api.vk.com/method/photos.getAll?owner_id=\(userID)&photo_sizes=0&access_token=\(VKSession.info.token)&v=5.126")
-
+        let url = URL(string:"https://api.vk.com/method/photos.get?owner_id=\(userID)&album_id=profile&count=1&photo_sizes=1&access_token=\(VKSession.info.token)&v=5.130")
+        print(url!)
+        
         URLSession.shared.dataTask(with: url!) { data, response, error in
             guard let data = data else { return }
-            print(String(data: data, encoding: .utf8))
+            //print(String(data: data, encoding: .utf8)!)
             do {
-                let jsonData = try JSONDecoder().decode(Item3.self, from: data)
-                // на данный момент тут косяк, не корректная выгрузка из-за чего пока пустота пока в фото :(
-                self.photoArray = jsonData.sizes
-                print(jsonData)
+                let jsonData = try JSONDecoder().decode(Photo.self, from: data).response
+                
+                var array = [Item3]()
+                array = jsonData.items
+                var sizesArray = [Size]()
+                var i = array.makeIterator()
+                while let photos = i.next() {
+                    sizesArray.append(contentsOf: photos.sizes)
+                }
+                DispatchQueue.main.async() {
+                    self.savePhotoData(sizesArray)
+                }
             } catch {
                 print("Error is : \n\(error)")
             }

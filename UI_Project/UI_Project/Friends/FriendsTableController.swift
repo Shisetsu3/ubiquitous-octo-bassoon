@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class FriendsTableController: UITableViewController, UISearchBarDelegate {
     
@@ -27,7 +28,8 @@ class FriendsTableController: UITableViewController, UISearchBarDelegate {
         
         getFriends()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        DispatchQueue.main.async() {
+            self.loadFriendsData()
             self.friendsData.forEach { friend in
                 let firstLetter = String(friend.firstName.first!)
                 if self.sections[firstLetter] != nil {
@@ -176,50 +178,73 @@ class FriendsTableController: UITableViewController, UISearchBarDelegate {
             let key = keys[indexPath.section]
             if searchBarStatus {
                 let searchedFriends = filteredData[indexPath.row]
-                vc.userPhoto = imageName1 //UIImage(named: friendsClass.photo50)
+                vc.userPhoto = imageName1
                 vc.userName = searchedFriends.firstName
                 vc.userSurname = searchedFriends.lastName
-                vc.userCity = searchedFriends.city?.title
+                //vc.userCity = searchedFriends.city?.title
                 vc.userBirth = searchedFriends.bdate
-                //vc.userAge = "\(friendsClass.age)"
                 if searchedFriends.online == 1 {
                     vc.userStatus = "Online"
                 } else if searchedFriends.online == 0 {
                     vc.userStatus = "Offline"
                 }
-                vc.userID = String(searchedFriends.id)
-                //vc.userBio = friendsClass.bio
+                vc.userID = searchedFriends.id
             } else {
                 let friendsClass = sections[key]![indexPath.row]
                 let imageUrlString2 = friendsClass.photo
                 let imageUrl2 = URL(string: imageUrlString2)!
                 let imageData2 = try! Data(contentsOf: imageUrl2)
                 imageName2 = UIImage(data: imageData2)!
-                vc.userPhoto = imageName2 //UIImage(named: friendsClass.photo50)
+                vc.userPhoto = imageName2
                 vc.userName = friendsClass.firstName
                 vc.userSurname = friendsClass.lastName
-                vc.userCity = friendsClass.city?.title
+                //vc.userCity = friendsClass.city?.title
                 vc.userBirth = friendsClass.bdate
-                //vc.userAge = "\(friendsClass.age)"
                 if friendsClass.online == 1 {
                     vc.userStatus = "Online"
                 } else if friendsClass.online == 0 {
                     vc.userStatus = "Offline"
                 }
-                vc.userID = String(friendsClass.id)
-                //vc.userBio = friendsClass.bio
+                vc.userID = friendsClass.id
             }
         }
     }
     
+    func saveFriendsData(_ users: [Users]) {
+        do {
+            let realm = try Realm()
+            realm.beginWrite()
+            realm.add(users, update: .modified)
+            try realm.commitWrite()
+//            print("URL FOR BASE")
+//            print(realm.configuration.fileURL!)
+        } catch {
+            print(error)
+        }
+    }
+    
+    func loadFriendsData() {
+        do {
+            let realm = try Realm()
+            let users = realm.objects(Users.self)
+            self.friendsData = Array(users)
+        } catch {
+            print(error)
+        }
+    }
+    
+    
     func getFriends() {
-        let url = URL(string: "https://api.vk.com/method/friends.get?user_id=\(VKSession.info.userId)&fields=nickname,sex,bdate,city,photo_100,online&access_token=\(VKSession.info.token)&v=5.126")
-
+        let url = URL(string: "https://api.vk.com/method/friends.get?user_id=\(VKSession.info.userId)&fields=nickname,sex,bdate,city,photo_200_orig,online&access_token=\(VKSession.info.token)&v=5.126")
+        
         URLSession.shared.dataTask(with: url!) { data, response, error in
             guard let data = data else { return }
             do {
                 let jsonData = try JSONDecoder().decode(User.self, from: data)
-                self.friendsData = jsonData.response.items
+                let usersToDB = jsonData.response.items
+                DispatchQueue.main.async() {
+                    self.saveFriendsData(usersToDB)
+                }
             } catch {
                 print("Error is : \n\(error)")
             }

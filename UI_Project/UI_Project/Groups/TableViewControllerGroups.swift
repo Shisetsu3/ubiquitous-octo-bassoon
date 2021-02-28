@@ -6,20 +6,22 @@
 //
 
 import UIKit
+import RealmSwift
+
 
 class TableViewControllerGroups: UITableViewController {
     
     
-    var userGroups = [Groups] ()
-//    var groupPics = [String] ()
-//    var groupInfo = [String] ()
+    var userGroups = [Groups]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.rowHeight = 45
         
         getGroups()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+        DispatchQueue.main.async() {
+            self.loadGroupsData()
             self.tableView.reloadData()
         }
     }
@@ -36,9 +38,6 @@ class TableViewControllerGroups: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "userGroups", for: indexPath) as! TableViewCellGroups
         let groups = userGroups[indexPath.row]
         cell.userGroupsLabel.text = groups.name
-//        let groupDescription  = groupInfo[indexPath.row]
-//        cell.groupDescription.text = groupDescription.description
-//        let imageGroup = "\(self.groupPics[indexPath.row])"
         let imageUrlString2 = groups.photo
         let imageUrl2 = URL(string: imageUrlString2)!
         let imageData2 = try! Data(contentsOf: imageUrl2)
@@ -51,8 +50,6 @@ class TableViewControllerGroups: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             userGroups.remove(at: indexPath.row)
-//            groupPics.remove(at: indexPath.row)
-//            groupInfo.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 self.tableView.reloadData()
@@ -66,34 +63,53 @@ class TableViewControllerGroups: UITableViewController {
         self.navigationController!.pushViewController(nextViewController, animated: true)
     }
     
-//    @IBAction func addGroup(segue: UIStoryboardSegue) {
-//        if segue.identifier == "addGroup" {
-//            guard let RecomendedGroups = segue.source as? TableViewControllerRecomendGroups else { return }
-//
-//            if let indexPath = RecomendedGroups.tableView.indexPathForSelectedRow {
-//                let groups = RecomendedGroups.userReccomendGroups[indexPath.row]
-//                let groups = RecomendedGroups.sendData[indexPath.row]
-//                let image = RecomendedGroups.sendData[indexPath.row]
-//                let descr = RecomendedGroups.sendData[indexPath.row]
-//
-//                if !userGroups.contains(groups.name) || !userGroups.contains(groups.photo) {
-//                    userGroups.append(groups.name)
-//                    groupPics.append(image.photo)
-//                    groupInfo.append(descr.description)
-//                    tableView.reloadData()
-//                }
-//            }
-//        }
-//    }
+    @IBAction func addGroup(segue: UIStoryboardSegue) {
+        if segue.identifier == "addGroup" {
+            guard let RecomendedGroups = segue.source as? TableViewControllerRecomendGroups else { return }
+
+            if let indexPath = RecomendedGroups.tableView.indexPathForSelectedRow {
+                let searchedGroups = RecomendedGroups.sendData[indexPath.row]
+                if !userGroups.contains(searchedGroups) {
+                    userGroups.append(searchedGroups)
+                    tableView.reloadData()
+                }
+            }
+        }
+    }
+    
+    func saveGroupsData(_ groups: [Groups]) {
+        do {
+            let realm = try Realm()
+            realm.beginWrite()
+            realm.add(groups, update: .modified)
+            try realm.commitWrite()
+        } catch {
+            print(error)
+        }
+    }
+    
+    func loadGroupsData() {
+        do {
+            let realm = try Realm()
+            let groups = realm.objects(Groups.self)
+            self.userGroups = Array(groups)
+        } catch {
+            print(error)
+        }
+    }
     
     func getGroups() {
-        let url = URL(string: "https://api.vk.com/method/groups.get?user_id=\(VKSession.info.userId)&extended=1&access_token=\(VKSession.info.token)&v=5.126")
+        let url = URL(string: "https://api.vk.com/method/groups.get?user_id=\(VKSession.info.userId)&extended=1&access_token=\(VKSession.info.token)&v=5.130")
+        print(url!)
         
         URLSession.shared.dataTask(with: url!) { data, response, error in
             guard let data = data else { return }
             do {
                 let jsonData = try JSONDecoder().decode(Group.self, from: data)
-                self.userGroups = jsonData.response.items
+                let groupsToDB = jsonData.response.items
+                DispatchQueue.main.async() {
+                    self.saveGroupsData(groupsToDB)
+                }
             } catch {
                 print("Error is : \n\(error)")
             }

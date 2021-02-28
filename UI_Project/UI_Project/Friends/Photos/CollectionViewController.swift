@@ -11,18 +11,14 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
 
     var userPhoto = [Size]()
     var avatar: UIImage!
-    var userID: String!
-    //var userGalery: [UIImage]!
-    //var photoGallery = PhotoGallery().images
-    
-    
+    var userID = Int()
     var counts = 3
     var offset:CGFloat = 2.0
+    var galleryPhotoIndex: IndexPath = []
     
     override func viewDidLoad() {
         self.tabBarController?.tabBar.isHidden = false
         super.viewDidLoad()
-
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "friendPhoto")
         self.collectionView!.register(UINib(nibName: "PhotoFullViewCell", bundle: nil), forCellWithReuseIdentifier: "PhotoFullViewCell")
     }
@@ -40,26 +36,19 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoFullViewCell", for: indexPath) as! PhotoFullViewCell
         let photos = userPhoto[indexPath.row]
-        let imageUrlString = photos.url
-        let imageUrl = URL(string: imageUrlString)!
+        let imageUrl = URL(string: photos.url)!
         let imageData = try! Data(contentsOf: imageUrl)
-        let imageName = UIImage(data: imageData)!
-        
+        let imageName = UIImage(data: imageData)
         cell.photoView.image = imageName
-        //cell.photoView.image = photoGallery[indexPath.item]
-        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
+    
         let photoFrame = collectionView.frame
-        
         let widthFrame = photoFrame.width / CGFloat(counts)
         let heightFrame = widthFrame
-        
         let spacing = CGFloat((counts + 1)) * offset / CGFloat(counts)
-        
         return CGSize(width: widthFrame - spacing, height: heightFrame - (offset*2))
     }
 
