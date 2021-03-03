@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -21,6 +21,7 @@
 		995BFDDC259CE5CA0099FF45 /* DotController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995BFDDB259CE5CA0099FF45 /* DotController.swift */; };
 		995E491825988ED200C2864C /* AnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995E491725988ED200C2864C /* AnimationController.swift */; };
 		995E491B2598948900C2864C /* Christmas.json in Resources */ = {isa = PBXBuildFile; fileRef = 995E491A2598948900C2864C /* Christmas.json */; };
+		996DF3B425EE2EB4008B836D /* userPhotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996DF3B325EE2EB4008B836D /* userPhotos.swift */; };
 		998166EB25840B59001DA1E3 /* FriendsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998166EA25840B59001DA1E3 /* FriendsTableController.swift */; };
 		998166F02584B3A7001DA1E3 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998166EF2584B3A7001DA1E3 /* TableViewCell.swift */; };
 		998166F72584B5C8001DA1E3 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998166F62584B5C8001DA1E3 /* CollectionViewController.swift */; };
@@ -58,6 +59,7 @@
 		995BFDDB259CE5CA0099FF45 /* DotController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotController.swift; sourceTree = "<group>"; };
 		995E491725988ED200C2864C /* AnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationController.swift; sourceTree = "<group>"; };
 		995E491A2598948900C2864C /* Christmas.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Christmas.json; sourceTree = "<group>"; };
+		996DF3B325EE2EB4008B836D /* userPhotos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userPhotos.swift; sourceTree = "<group>"; };
 		998166EA25840B59001DA1E3 /* FriendsTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableController.swift; sourceTree = "<group>"; };
 		998166EF2584B3A7001DA1E3 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		998166F62584B5C8001DA1E3 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				998F3A5F25DBCEE80054154B /* User.swift */,
 				993CC4B825DE66C400FAEE70 /* Group.swift */,
 				99A2B7A325E1A13200760060 /* Photo.swift */,
+				996DF3B325EE2EB4008B836D /* userPhotos.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -238,7 +241,6 @@
 				8815E033115A7800B998D55C /* Pods-UI_Project.debug.xcconfig */,
 				BB89F939B07B151A01EA24EB /* Pods-UI_Project.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -365,6 +367,7 @@
 				99A2B7A425E1A13200760060 /* Photo.swift in Sources */,
 				99102D282591FFBE00F620BD /* NewsTableController.swift in Sources */,
 				99975AEC25A32BA000E11042 /* CustomNavigationController.swift in Sources */,
+				996DF3B425EE2EB4008B836D /* userPhotos.swift in Sources */,
 				9981674325852279001DA1E3 /* LikeButton.swift in Sources */,
 				998166EB25840B59001DA1E3 /* FriendsTableController.swift in Sources */,
 			);

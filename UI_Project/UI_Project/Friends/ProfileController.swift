@@ -7,6 +7,8 @@
 
 import UIKit
 import RealmSwift
+import SwiftyJSON
+import SwiftyVK
 
 class ProfileController: UIViewController {
     
@@ -117,9 +119,7 @@ class ProfileController: UIViewController {
                 while let photos = i.next() {
                     sizesArray.append(contentsOf: photos.sizes)
                 }
-                DispatchQueue.main.async() {
-                    self.savePhotoData(sizesArray)
-                }
+                self.savePhotoData(sizesArray)
             } catch {
                 print("Error is : \n\(error)")
             }

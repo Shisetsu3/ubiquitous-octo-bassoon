@@ -12,13 +12,14 @@ class FriendsTableController: UITableViewController, UISearchBarDelegate {
     
     @IBOutlet weak var searchBar: UISearchBar!
     
-    var friendsData = [Users]()
+    var friendsData: Results<Users>?
     var sections: [String: [Users]] = [:]
     var keys: [String] = []
     var filteredData = [Users]()
     var searchBarStatus = false
     var imageName1 = UIImage()
     var imageName2 = UIImage()
+    var token: NotificationToken?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,10 +28,10 @@ class FriendsTableController: UITableViewController, UISearchBarDelegate {
         searchBar.placeholder = "Search"
         
         getFriends()
+        pairTableAndRealm()
         
-        DispatchQueue.main.async() {
-            self.loadFriendsData()
-            self.friendsData.forEach { friend in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.friendsData!.forEach { friend in
                 let firstLetter = String(friend.firstName.first!)
                 if self.sections[firstLetter] != nil {
                     self.sections[firstLetter]!.append(friend)
@@ -44,7 +45,7 @@ class FriendsTableController: UITableViewController, UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filteredData = friendsData.filter ({ (friend: Users) -> Bool in
+        filteredData = friendsData!.filter ({ (friend: Users) -> Bool in
             return friend.firstName.lowercased().contains(searchText.lowercased())
         })
         searchBar.showsCancelButton = true
@@ -216,23 +217,12 @@ class FriendsTableController: UITableViewController, UISearchBarDelegate {
             realm.beginWrite()
             realm.add(users, update: .modified)
             try realm.commitWrite()
-//            print("URL FOR BASE")
-//            print(realm.configuration.fileURL!)
+            print("URL FOR BASE")
+            print(realm.configuration.fileURL!)
         } catch {
             print(error)
         }
     }
-    
-    func loadFriendsData() {
-        do {
-            let realm = try Realm()
-            let users = realm.objects(Users.self)
-            self.friendsData = Array(users)
-        } catch {
-            print(error)
-        }
-    }
-    
     
     func getFriends() {
         let url = URL(string: "https://api.vk.com/method/friends.get?user_id=\(VKSession.info.userId)&fields=nickname,sex,bdate,city,photo_200_orig,online&access_token=\(VKSession.info.token)&v=5.126")
@@ -242,13 +232,30 @@ class FriendsTableController: UITableViewController, UISearchBarDelegate {
             do {
                 let jsonData = try JSONDecoder().decode(User.self, from: data)
                 let usersToDB = jsonData.response.items
-                DispatchQueue.main.async() {
-                    self.saveFriendsData(usersToDB)
-                }
+                self.saveFriendsData(usersToDB)
             } catch {
                 print("Error is : \n\(error)")
             }
         }.resume()
+    }
+    
+    func pairTableAndRealm() {
+        guard let realm = try? Realm() else { return }
+        
+        friendsData = realm.objects(Users.self)
+        token = friendsData!.observe { [weak self] (changes: RealmCollectionChange) in
+            guard let tableView = self?.tableView else { return }
+            switch changes {
+            case .initial:
+                tableView.reloadData()
+            case .update:
+                tableView.beginUpdates()
+                tableView.reloadData()
+                tableView.endUpdates()
+            case .error(let error):
+                fatalError("\(error)")
+            }
+        }
     }
 }
 

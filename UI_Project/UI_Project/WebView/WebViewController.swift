@@ -28,9 +28,9 @@ class WebViewController: UIViewController {
                     URLQueryItem(name: "redirect_uri", value: "https://oauth.vk.com/blank.html"),
                     URLQueryItem(name: "scope", value: "friends,photos,groups"),
                     URLQueryItem(name: "response_type", value: "token"),
-                    URLQueryItem(name: "v", value: "5.126"),
+                    URLQueryItem(name: "v", value: "5.130"),
                     URLQueryItem(name: "state", value: "Your_TOKEN_is_MINE!!!"),
-                    URLQueryItem(name: "revoke", value: "1") // принудительный запрос прав на доступ, даже если уже выданы. Для отладки, что страница загружается.
+                    //URLQueryItem(name: "revoke", value: "1") // принудительный запрос прав на доступ, даже если уже выданы. Для отладки, что страница загружается.
                 ]
                 
                 let request = URLRequest(url: urlComponents.url!)

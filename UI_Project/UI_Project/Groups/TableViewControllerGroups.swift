@@ -20,7 +20,7 @@ class TableViewControllerGroups: UITableViewController {
         
         getGroups()
         
-        DispatchQueue.main.async() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.loadGroupsData()
             self.tableView.reloadData()
         }
@@ -107,9 +107,7 @@ class TableViewControllerGroups: UITableViewController {
             do {
                 let jsonData = try JSONDecoder().decode(Group.self, from: data)
                 let groupsToDB = jsonData.response.items
-                DispatchQueue.main.async() {
-                    self.saveGroupsData(groupsToDB)
-                }
+                self.saveGroupsData(groupsToDB)
             } catch {
                 print("Error is : \n\(error)")
             }

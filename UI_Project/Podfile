@@ -8,5 +8,7 @@ target 'UI_Project' do
   # Pods for UI_Project
   #pod 'RealmSwift'
   #pod 'lottie-ios'
+  #pod 'SwiftyJSON'
+  #pod 'SwiftyVK'
 
 end

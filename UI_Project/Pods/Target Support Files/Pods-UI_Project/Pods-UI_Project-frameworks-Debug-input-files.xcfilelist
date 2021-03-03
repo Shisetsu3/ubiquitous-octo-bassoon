@@ -1,4 +1,6 @@
 ${PODS_ROOT}/Target Support Files/Pods-UI_Project/Pods-UI_Project-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/Realm/Realm.framework
 ${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework
+${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework
+${BUILT_PRODUCTS_DIR}/SwiftyVK/SwiftyVK.framework
 ${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework
