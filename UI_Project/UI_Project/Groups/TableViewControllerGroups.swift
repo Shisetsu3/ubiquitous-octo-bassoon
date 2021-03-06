@@ -7,27 +7,37 @@
 
 import UIKit
 import RealmSwift
+import FirebaseDatabase
+import FirebaseAuth
+import Firebase
+import FirebaseFirestore
+
 
 
 class TableViewControllerGroups: UITableViewController {
     
-    
+    let fireDB = Firestore.firestore()
     var userGroups = [Groups]()
+    var userRealmGroups: Results<Groups>?
+    let realm = try! Realm()
+    var token: NotificationToken?
+    let currentUser = Auth.auth().currentUser?.email
     
     override func viewDidLoad() {
+        print(currentUser!)
         super.viewDidLoad()
         self.tableView.rowHeight = 45
         
         getGroups()
+        loadGroupsData()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            self.loadGroupsData()
             self.tableView.reloadData()
         }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.userGroups.count
+        return self.userRealmGroups!.count
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -36,7 +46,7 @@ class TableViewControllerGroups: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "userGroups", for: indexPath) as! TableViewCellGroups
-        let groups = userGroups[indexPath.row]
+        let groups = userRealmGroups![indexPath.row]
         cell.userGroupsLabel.text = groups.name
         let imageUrlString2 = groups.photo
         let imageUrl2 = URL(string: imageUrlString2)!
@@ -49,7 +59,11 @@ class TableViewControllerGroups: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            userGroups.remove(at: indexPath.row)
+            if let item = userRealmGroups?[indexPath.row] {
+                try! realm.write {
+                    realm.delete(item)
+                }
+            }
             tableView.deleteRows(at: [indexPath], with: .fade)
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 self.tableView.reloadData()
@@ -63,14 +77,34 @@ class TableViewControllerGroups: UITableViewController {
         self.navigationController!.pushViewController(nextViewController, animated: true)
     }
     
+    
     @IBAction func addGroup(segue: UIStoryboardSegue) {
         if segue.identifier == "addGroup" {
             guard let RecomendedGroups = segue.source as? TableViewControllerRecomendGroups else { return }
+            
 
             if let indexPath = RecomendedGroups.tableView.indexPathForSelectedRow {
                 let searchedGroups = RecomendedGroups.sendData[indexPath.row]
-                if !userGroups.contains(searchedGroups) {
-                    userGroups.append(searchedGroups)
+                if !userRealmGroups!.contains(searchedGroups) {
+                    do {
+                        fireDB.collection("Database").document(currentUser!).setData([                            "groupName": FieldValue.arrayUnion([searchedGroups.name]),
+                            "groupPhoto": FieldValue.arrayUnion([searchedGroups.photo])
+                        ],merge: true) { err in
+                            if let err = err {
+                                print("Error writing document: \(err)")
+                            } else {
+                                print("Document successfully written!")
+                            }
+                        }
+                        let realm = try Realm()
+                        realm.beginWrite()
+                        realm.add(searchedGroups, update: .modified)
+                        try realm.commitWrite()
+                        print("URL FOR BASE")
+                        print(realm.configuration.fileURL!)
+                    } catch {
+                        print(error)
+                    }
                     tableView.reloadData()
                 }
             }
@@ -90,11 +124,21 @@ class TableViewControllerGroups: UITableViewController {
     
     func loadGroupsData() {
         do {
-            let realm = try Realm()
-            let groups = realm.objects(Groups.self)
-            self.userGroups = Array(groups)
-        } catch {
-            print(error)
+            userRealmGroups = realm.objects(Groups.self)
+            token = userRealmGroups!.observe { [weak self] (changes: RealmCollectionChange) in
+                guard let tableView = self?.tableView else { return }
+                switch changes {
+                case .initial:
+                    tableView.reloadData()
+                case .update:
+                    tableView.beginUpdates()
+                    tableView.reloadData()
+                    print("DATA IS UPDATED!")
+                    tableView.endUpdates()
+                case .error(let error):
+                    fatalError("\(error)")
+                }
+            }
         }
     }
     

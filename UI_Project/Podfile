@@ -8,7 +8,13 @@ target 'UI_Project' do
   # Pods for UI_Project
   #pod 'RealmSwift'
   #pod 'lottie-ios'
-  #pod 'SwiftyJSON'
-  #pod 'SwiftyVK'
+  
+  # add the Firebase pod for Google Analytics
+  #pod 'Firebase/Analytics'
+  #pod 'Firebase/Auth'
+  #pod 'Firebase/Database'
+  #pod 'Firebase/Firestore'
+  # add pods for any other desired Firebase products
+  # https://firebase.google.com/docs/ios/setup#available-pods
 
 end

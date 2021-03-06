@@ -7,6 +7,7 @@
 
 import UIKit
 import RealmSwift
+import FirebaseAuth
 
 class FriendsTableController: UITableViewController, UISearchBarDelegate {
     
@@ -22,6 +23,9 @@ class FriendsTableController: UITableViewController, UISearchBarDelegate {
     var token: NotificationToken?
     
     override func viewDidLoad() {
+        let user = Auth.auth().currentUser?.email
+        print("user")
+        print(user)
         super.viewDidLoad()
         self.tableView.rowHeight = 60
         searchBar.delegate = self
@@ -30,7 +34,7 @@ class FriendsTableController: UITableViewController, UISearchBarDelegate {
         getFriends()
         pairTableAndRealm()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
             self.friendsData!.forEach { friend in
                 let firstLetter = String(friend.firstName.first!)
                 if self.sections[firstLetter] != nil {
@@ -247,7 +251,8 @@ class FriendsTableController: UITableViewController, UISearchBarDelegate {
             guard let tableView = self?.tableView else { return }
             switch changes {
             case .initial:
-                tableView.reloadData()
+                //                tableView.reloadData()
+                print("INITIAL")
             case .update:
                 tableView.beginUpdates()
                 tableView.reloadData()
@@ -257,5 +262,18 @@ class FriendsTableController: UITableViewController, UISearchBarDelegate {
             }
         }
     }
+    
+    @IBAction func logOutButtonPressed(_ sender: Any) {
+        do {
+            // 1
+            try Auth.auth().signOut()
+            self.dismiss(animated: true, completion: nil)
+        } catch (let error) {
+            // 2
+            print("Auth sign out failed: \(error)")
+        }
+
+    }
+    
 }
 

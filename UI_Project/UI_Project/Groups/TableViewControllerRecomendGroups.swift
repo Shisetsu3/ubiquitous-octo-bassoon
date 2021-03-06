@@ -6,11 +6,13 @@
 //
 
 import UIKit
+import RealmSwift
 
 class TableViewControllerRecomendGroups: UITableViewController, UISearchBarDelegate {
     
     @IBOutlet weak var searchBar: UISearchBar!
     var sendData: [Groups] = []
+    var sendRealmData: Results<Groups>?
     var filteredData = [Groups]()
     var searchBarStatus = false
     var imageGroup = UIImage()
@@ -50,7 +52,7 @@ class TableViewControllerRecomendGroups: UITableViewController, UISearchBarDeleg
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "recomendedGroups", for: indexPath) as! TableViewCellRecomendedGroups
-        let searchedGroups = filteredData[indexPath.row]
+        let searchedGroups = sendData[indexPath.row]
         cell.recomendedGroupsLabel.text = searchedGroups.name
         let imageUrlString2 = searchedGroups.photo
         let imageUrl2 = URL(string: imageUrlString2)!
@@ -73,7 +75,7 @@ class TableViewControllerRecomendGroups: UITableViewController, UISearchBarDeleg
                 let jsonData = try JSONDecoder().decode(Group.self, from: data)
                 self.filteredData = jsonData.response.items
                 self.sendData = self.filteredData
-                DispatchQueue.main.async {
+                DispatchQueue.main.async() {
                     self.tableView.reloadData()
                 }
             } catch {

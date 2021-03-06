@@ -7,8 +7,6 @@
 
 import UIKit
 import RealmSwift
-import SwiftyJSON
-import SwiftyVK
 
 class ProfileController: UIViewController {
     
